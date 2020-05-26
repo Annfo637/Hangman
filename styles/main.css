@@ -1,0 +1,286 @@
+@charset "UTF-8";
+/*kodblock för bildhantering*/
+.img-wrapper {
+  position: relative;
+  block-size: 100%;
+  inline-size: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.graphics-img {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  block-size: 100%;
+  inline-size: 100%;
+  max-block-size: 100%;
+  max-inline-size: 100%;
+  position: absolute;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+main {
+  background-color: lightgrey;
+  margin: 0.5em;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+@media (min-width: 500px) {
+  main {
+    margin: 1em;
+  }
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+footer {
+  background-color: lightgrey;
+  text-align: center;
+  margin: 0.5em;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+@media (min-width: 500px) {
+  footer {
+    margin: 1em;
+  }
+}
+
+.hero {
+  position: relative;
+  block-size: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url(../images/lilac.jpg);
+  background-size: cover;
+  margin: 0.5em;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+@media (min-width: 500px) {
+  .hero {
+    margin: 1em;
+  }
+}
+
+.hero__text {
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+.container {
+  margin: 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+.button__standard {
+  margin: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+  background-color: #a18fae;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: black;
+}
+
+.button__standard:hover {
+  background-color: #ebe6c9;
+  color: black;
+}
+
+.adminpage {
+  padding: 10px;
+}
+
+.adminpage__text {
+  margin: 10px;
+}
+
+.adminpage__wordlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 5px;
+}
+
+.adminpage__word {
+  display: inline-block;
+  margin: 5px;
+}
+
+.adminpage__word:hover {
+  color: lightslategrey;
+  cursor: pointer;
+}
+
+.text-input {
+  margin: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
+          box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+.input-label {
+  margin: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.gamepage {
+  padding: 10px;
+}
+
+.gamepage__container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[2];
+  -ms-grid-columns: 60% 40%;
+      grid-template: repeat(2, 1fr)/60% 40%;
+}
+
+.gamepage__word {
+  grid-column: span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.gamepage__message {
+  grid-column: span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  inline-size: 80%;
+  text-align: center;
+}
+
+.gamepage__graphics {
+  grid-row: span 2;
+}
+
+.gamepage__alphabet {
+  grid-column: span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.word__letter {
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px;
+  text-transform: uppercase;
+}
+
+.hide__letter {
+  color: transparent;
+  border-bottom: solid 3px black;
+  inline-size: 20px;
+}
+
+.show__letter {
+  color: black;
+  border-bottom-color: transparent;
+}
+
+.button__letter {
+  color: #f3f5f7;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 5px;
+  block-size: 35px;
+  inline-size: 35px;
+  margin: 5px;
+  background-color: #646464;
+  border-radius: 5px;
+}
+
+.button__clicked {
+  color: #817075;
+  background-color: transparent;
+}
+
+.settings-img {
+  margin-left: 7px;
+  height: 18px;
+  width: 18px;
+}
+
+.graphics-img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 15px;
+}
+/*# sourceMappingURL=main.css.map */

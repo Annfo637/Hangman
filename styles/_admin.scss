@@ -1,0 +1,38 @@
+.adminpage {
+  padding: 10px;
+  &__text {
+    margin: 10px;
+  }
+  &__wordlist {
+    //inline-size: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px;
+  }
+  &__word {
+    display: inline-block;
+    margin: 5px;
+    &:hover {
+      color: lightslategrey;
+      cursor: pointer;
+    }
+  }
+}
+
+.text-input {
+  margin: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 5px 2px 1px lightslategrey;
+}
+
+.input-label {
+  margin: 10px;
+}
+
+.hide {
+  display: none;
+}

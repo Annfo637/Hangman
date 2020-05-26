@@ -1,0 +1,83 @@
+.gamepage {
+  padding: 10px;
+  &__container {
+    display: grid;
+    grid-template: repeat(2, 1fr) / 60% 40%;
+  }
+  &__word {
+    grid-column: span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__message {
+    grid-column: span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inline-size: 80%;
+    text-align: center;
+  }
+  &__graphics {
+    grid-row: span 2;
+  }
+  &__alphabet {
+    grid-column: span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.word__letter {
+  display: inline-block;
+  font-size: 24px;
+  margin: 4px;
+  text-transform: uppercase;
+}
+
+.hide__letter {
+  color: transparent;
+  border-bottom: solid 3px black;
+  inline-size: 20px;
+}
+
+.show__letter {
+  color: black;
+  border-bottom-color: transparent;
+}
+
+.button__letter {
+  color: #f3f5f7;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 5px;
+  block-size: 35px;
+  inline-size: 35px;
+  margin: 5px;
+  background-color: rgb(100, 100, 100);
+  //border: solid 1px black;
+  border-radius: 5px;
+}
+
+.button__clicked {
+  color: #817075;
+  background-color: transparent;
+}
+
+.settings-img {
+  margin-left: 7px;
+  height: 18px;
+  width: 18px;
+}
+
+.img-wrapper {
+  @extend %wrapper-parent;
+}
+
+.graphics-img {
+  @extend %wrapped-img;
+  object-fit: contain;
+  padding: 15px;
+}
