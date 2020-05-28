@@ -10,6 +10,7 @@ const graphicsWrapper = document.querySelector("#graphicsWrapper");
 const graphicsImage = document.querySelector("#graphicsImage");
 //Variabler för värden som ska användas globalt
 let errors = 0;
+//graphicsImage.src = "images/flower-init.png";
 //let myWords = [];
 
 /*if (JSON.parse(localStorage.getItem("words")) !== null) {
@@ -22,6 +23,8 @@ initializeGame();
 //Funktion som körs vid spelstart, ritar ut alfabet, slumpar ord och
 //sätter grafiken till startläge.
 function initializeGame() {
+  graphicsImage.src = "images/flower-init.png";
+  console.log(graphicsImage.src);
   gameAlphabet.innerHTML = "";
   alphabet.forEach(function (item) {
     const letterBtn = document.createElement("button");
@@ -133,7 +136,10 @@ function setGraphics(int) {
 function gameFinished() {
   if (errors === 7) {
     alert("Du förlorade!");
+    graphicsImage.src = "images/flower-init.png";
+    graphicsWrapper.appendChild(graphicsImage);
     errors = 0;
+
     initializeGame();
   } else {
     alert("Du vann!");

@@ -6,7 +6,7 @@ emptyWordlistBtn.addEventListener("click", emptyWordlist);
 const wordlistContainer = document.querySelector("#wordlistContainer");
 const wordlistMessage = document.querySelector("#wordlistMessage");
 const submitWord = document.querySelector("#submitWord");
-submitWord.addEventListener("submit", addWord);
+//submitWord.addEventListener("submit", addWord);
 const addWordInput = document.querySelector("#addWordInput");
 //const addWordBtn = document.querySelector("#addWord");
 
@@ -29,13 +29,13 @@ if (JSON.parse(localStorage.getItem("words")) !== null) {
 
 //Funktion som lägger till nytt ord - GÖRAS OM FÖR DB
 function addWord() {
-  event.preventDefault();
-  const newWord = addWordInput.value;
+  //event.preventDefault();
+  //const newWord = addWordInput.value;
   //validera att ordet inte redan finns - ej klar
-  myWords.push(newWord);
+  //myWords.push(newWord);
   addWordInput.value = "";
-  updateLocalStorage();
-  drawWordlist();
+  //updateLocalStorage();
+  //drawWordlist();
 }
 
 //Funktion som anropas vid klick på ord

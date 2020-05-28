@@ -119,8 +119,6 @@ footer {
   -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
           box-shadow: 3px 5px 2px 1px lightslategrey;
   background-color: #a18fae;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
   color: black;
 }
 
@@ -158,6 +156,10 @@ footer {
 .adminpage__word:hover {
   color: lightslategrey;
   cursor: pointer;
+}
+
+.editpage {
+  padding: 10px;
 }
 
 .text-input {
