@@ -18,18 +18,16 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 ?>
 
 <main class="editpage">
-
-    <section id="edit" class="edit">
-    <a href="admin-home.php">
-    <button id="deleteBtn" 
-            class="button__standard">
-            TILLBAKA TILL ORDLISTAN</button>
-    </a>
-    <br>
-    <form method="POST">
+  <a href="admin-home.php">
+    <button class="button__standard">
+     TILLBAKA TILL ORDLISTAN</button>
+  </a>
+  <br>
+  <section>
+    <form id="editform" method="POST">
         <input type="text" 
                 name="wordinput" 
-                class="text-input" 
+                class="text-input edit-text" 
                 value="<?php echo $word; ?>"/>
         <input type="hidden" 
                 name="wordid" 
@@ -49,4 +47,4 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 </main>
 
 <?php
-require_once 'footer-admin.php';
+require_once 'footer-admin-edit.php';

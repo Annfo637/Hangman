@@ -2,7 +2,10 @@
   padding: 10px;
   &__container {
     display: grid;
-    grid-template: repeat(2, 1fr) / 60% 40%;
+    grid-template: 2fr 1fr 2fr / 1fr;
+    @media (min-width: 600px) {
+      grid-template: repeat(2, 1fr) / 60% 40%;
+    }
   }
   &__word {
     grid-column: span 1;
@@ -19,7 +22,11 @@
     text-align: center;
   }
   &__graphics {
-    grid-row: span 2;
+    order: -1;
+    @media (min-width: 600px) {
+      order: 0;
+      grid-row: span 2;
+    }
   }
   &__alphabet {
     grid-column: span 1;
@@ -80,4 +87,10 @@
   @extend %wrapped-img;
   object-fit: contain;
   padding: 15px;
+}
+
+.helplist {
+  line-height: 1.4em;
+  padding: 15px;
+  margin-left: 10px;
 }

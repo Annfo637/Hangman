@@ -9,6 +9,7 @@ require_once 'admin-empty-list.php';
 $sql = "SELECT * FROM hangman_wordlist"; 
 $stmt = $db->prepare($sql);
 $stmt->execute();
+$wordlist = [];
 
 ?>
 
@@ -16,10 +17,12 @@ $stmt->execute();
   <a href="../index.php">
   <button class="button__standard">TILLBAKA TILL SPELET</button>
   </a>
+  <a href="admin-empty-list.php?action=emptylist">
   <button id="emptyWordlist" class="button__standard"
   onclick="return confirm('Är du säker på att du vill rensa HELA ordlistan?')">
     RENSA ORDLISTAN
   </button>
+  </a>
   <p class="adminpage__text">
     Klicka på ett ord för att uppdatera eller ta bort det.
   </p>
@@ -29,26 +32,29 @@ $stmt->execute();
 <?php
 if($stmt->rowCount() === 0) {
   echo '<h3>Ordlistan är tom, lägg till ord nedan.</h3>';
+  $jsonWords = json_encode($wordlist, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT); 
 }
 else {  
-  $myWords = '<div class="adminpage__wordlist">';
+  $showWords = '<div class="adminpage__wordlist">';
 
   while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     $id = htmlspecialchars( $row['id']);
     $word = htmlspecialchars( $row['word']);
+    $wordlist[] = $word;
    
-    $myWords .= "<a href='admin-edit.php?id=$id' class='adminpage__word'>" . $word . "</a>";
+    $showWords .= "<a href='admin-edit.php?id=$id' class='adminpage__word'>" . $word . "</a>";
   }
-  $myWords .= '</div>';
-  echo $myWords;
+  $showWords .= '</div>';
+  echo $showWords;
+  $jsonWords = json_encode($wordlist, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT); 
 }
 ?>
-
     </div>
   </section>
   <section>
+    <br>
     <form id="submitWord" action="admin-add.php" method="POST">
-      <label for="addWordInput" class="input-label">
+      <label for="addWordInput" class="adminpage__text">
         Vill du lägga till ett nytt ord?</label>
       <br />
       <input
@@ -57,17 +63,14 @@ else {
         id="addWordInput"
         class="text-input"
         placeholder=""/>
-      <input type="submit" name ="submitword" id="addWord" class="button__standard" value="LÄGG TILL">
-      
+      <input type="submit" name ="submitword" id="addWord" class="button--inactive" value="LÄGG TILL">
+      <br>
+      <span class="validationText"></span>
     </form>
   </section>
-  <!--<section id="edit" class="edit">
-    <input type="text" id="editWordInput" class="text-input" />
-    <button id="updateBtn" class="button__standard">UPPDATERA</button>
-    <button id="deleteBtn" class="button__standard">TA BORT</button>
-  </section>-->
 </main>
 
+<script type="text/javascript">let myWords =<?php echo $jsonWords; ?>;</script>
 <?php
 
 require_once 'footer-admin.php';

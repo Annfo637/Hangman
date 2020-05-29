@@ -1,24 +1,4 @@
-/* Denna fil innehåller variabler för
-alfabets-array och ordlista-array */
-
-/*let wordlist = [
-  "blomma",
-  "spårvagn",
-  "daggmask",
-  "vitsippa",
-  "pianist",
-  "förenkla",
-  "balkong",
-  "längta",
-  "konduktör",
-  "hundras",
-  "blodtörstig",
-  "legitim",
-  "vegetarian",
-  "försynt",
-];
-
-localStorage.setItem("words", JSON.stringify(wordlist));*/
+/* Denna fil innehåller en alfabets-array*/
 
 let alphabet = [
   "a",

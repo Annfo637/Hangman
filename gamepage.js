@@ -1,43 +1,41 @@
-/* Detta script sköter diverse funktioner på spelsidan. */
+/* Detta script hanterar funktioner på spelsidan.
+ * Initiera spelet, slumpa ord, uppdatera grafiken,
+ * kontrollera om bokstäver finns eller ej i ordet,
+ * kontrollera när vinst respektive förlust inträffar
+ * samt visa/dölja instruktioner */
 
-//Variabler för olika DOM-element
+//Variabler för olika DOM-element samt en variabel för antal fel
 const gameWord = document.querySelector("#game__word");
 const word = document.querySelector("#word");
 const gameGraphics = document.querySelector("#game__graphics");
 const gameAlphabet = document.querySelector("#game__alphabet");
 const randomwordBtn = document.querySelector("#randomWord");
+const helpBtn = document.querySelector("#helpBtn");
+const instructions = document.querySelector("#instructions");
 const graphicsWrapper = document.querySelector("#graphicsWrapper");
 const graphicsImage = document.querySelector("#graphicsImage");
-//Variabler för värden som ska användas globalt
-let errors = 0;
-//graphicsImage.src = "images/flower-init.png";
-//let myWords = [];
 
-/*if (JSON.parse(localStorage.getItem("words")) !== null) {
-  myWords = JSON.parse(localStorage.getItem("words"));
-} else {
-  myWords = [];
-}*/
+let errors;
 initializeGame();
 
-//Funktion som körs vid spelstart, ritar ut alfabet, slumpar ord och
-//sätter grafiken till startläge.
+//Funktion som körs vid spelstart, ritar ut alfabet samt anropar
+//hjälpfunktioner som slumpar ord och sätter grafiken till startläge.
 function initializeGame() {
-  graphicsImage.src = "images/flower-init.png";
-  console.log(graphicsImage.src);
+  errors = 0;
   gameAlphabet.innerHTML = "";
+
   alphabet.forEach(function (item) {
     const letterBtn = document.createElement("button");
     letterBtn.textContent = item;
     letterBtn.classList.add("button__letter");
     letterBtn.classList.add(item);
     letterBtn.addEventListener("click", checkLetter);
-
     gameAlphabet.appendChild(letterBtn);
   });
+
   if (myWords.length !== 0) {
     randomizeWord();
-    //setGraphics(errors);
+    setGraphics(errors);
   } else {
     let message = document.createElement("h4");
     message.classList.add("gamepage__message");
@@ -49,12 +47,12 @@ function initializeGame() {
 
 //Funktion som slumpar fram ett ord och ritar ut strecken
 function randomizeWord() {
-  //Börja med ett tomt word-element
   word.innerHTML = "";
   const randomWord = myWords[Math.floor(Math.random() * myWords.length)];
+
   console.log(randomWord);
 
-  //lägg varje bokstav i ordet i ett spanelement
+  //lägg varje bokstav i ordet i ett spanelement och dölj bokstaven
   for (let i = 0; i < randomWord.length; i++) {
     const letter = document.createElement("span");
     letter.textContent = randomWord[i];
@@ -66,8 +64,8 @@ function randomizeWord() {
   }
 }
 
-//Lyssnare till knappen Slumpa nytt ord som anropar randomizeWord()
-randomwordBtn.addEventListener("click", randomizeWord);
+//Lyssnare till knappen Slumpa nytt ord som startar om spelet
+randomwordBtn.addEventListener("click", initializeGame);
 
 //Funktion som kontrollerar ifall klickad bokstav finns i ordet
 function checkLetter(event) {
@@ -76,10 +74,9 @@ function checkLetter(event) {
   if (!currentBtn.classList.contains("button__clicked")) {
     currentBtn.classList.add("button__clicked");
     let currentLetter = event.currentTarget.textContent;
-
     let letters = Array.from(word.querySelectorAll("span"));
 
-    //filtrera fram de bokstäver som kvarstår och som matchar klickad bokstav
+    //Filtrera fram de bokstäver som kvarstår och som matchar klickad bokstav
     let hiddenLetters = letters.filter(function (letter) {
       return letter.classList.contains("hide__letter");
     });
@@ -100,7 +97,8 @@ function correctGuess(matchArr) {
   matchArr.forEach(function (letter) {
     letter.classList.replace("hide__letter", "show__letter");
   });
-  //kontrollera om det fortfarande finns dolda bokstäver, annars anropa gameFinished
+
+  //Kontrollera om det fortfarande finns dolda bokstäver, annars anropa gameFinished
   let remainingLetters = Array.from(word.children).filter(function (letter) {
     return letter.classList.contains("hide__letter");
   });
@@ -117,32 +115,44 @@ function wrongGuess() {
 
 //Funktion som uppdaterar grafiken utifrån antal fel spelaren gjort
 function setGraphics(int) {
-  //Har man uppnått 7 fel så är spelet förlorat
-  if (int === 7) {
-    graphicsImage.src = `images/flower-gameover.png`;
-    graphicsWrapper.appendChild(graphicsImage);
-    gameFinished();
-  }
-  //ändra bild utifrån antal fel
-  graphicsImage.src = `images/flower-${int}.png`;
-  graphicsWrapper.appendChild(graphicsImage);
-  //Nedan ritar ut vald grafik, för tillfället endast en p-tagg
-  /*let currentGraphic = document.createElement("p");
-  currentGraphic.textContent = `Antal fel: ${int}`;
-  gameGraphics.appendChild(currentGraphic);*/
-}
-
-//Funktion som kontrollerar om spelet är över och meddelar vinst eller förlust
-function gameFinished() {
-  if (errors === 7) {
-    alert("Du förlorade!");
+  if (int === 0) {
     graphicsImage.src = "images/flower-init.png";
     graphicsWrapper.appendChild(graphicsImage);
-    errors = 0;
+  }
+  //Har man uppnått 7 fel så är spelet förlorat
+  else if (int === 7) {
+    gameFinished();
+  } else {
+    //Ändra bild utifrån antal fel
+    graphicsImage.src = `images/flower-${int}.png`;
+    graphicsWrapper.appendChild(graphicsImage);
+  }
+}
 
+//Funktion som kontrollerar och meddelar vinst eller förlust
+function gameFinished() {
+  if (errors === 7) {
+    graphicsImage.src = "images/flower-gameover.png";
+    graphicsWrapper.appendChild(graphicsImage);
+    alert("Åh nej, du förlorade!");
+    errors = 0;
     initializeGame();
   } else {
-    alert("Du vann!");
+    graphicsImage.src = "images/flower-win.png";
+    graphicsWrapper.appendChild(graphicsImage);
+    alert("Grattis, du vann!");
+    errors = 0;
     initializeGame();
+  }
+}
+
+//Visa/dölj instruktionerna
+helpBtn.addEventListener("click", toggleInstructions);
+
+function toggleInstructions() {
+  if (instructions.classList.contains("hide")) {
+    instructions.classList.remove("hide");
+  } else {
+    instructions.classList.add("hide");
   }
 }

@@ -29,11 +29,11 @@
 }
 
 main {
-  background-color: lightgrey;
+  background-color: lightgray;
   margin: 0.5em;
   border-radius: 5px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategray;
+          box-shadow: 3px 5px 2px 1px lightslategray;
 }
 
 @media (min-width: 500px) {
@@ -48,12 +48,12 @@ a {
 }
 
 footer {
-  background-color: lightgrey;
+  background-color: lightgray;
   text-align: center;
   margin: 0.5em;
   border-radius: 5px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategray;
+          box-shadow: 3px 5px 2px 1px lightslategray;
 }
 
 @media (min-width: 500px) {
@@ -78,8 +78,8 @@ footer {
   background-size: cover;
   margin: 0.5em;
   border-radius: 5px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategray;
+          box-shadow: 3px 5px 2px 1px lightslategray;
 }
 
 @media (min-width: 500px) {
@@ -89,7 +89,17 @@ footer {
 }
 
 .hero__text {
+  font-size: 32px;
   position: relative;
+  text-align: center;
+}
+
+@media (min-width: 500px) {
+  .hero__text {
+    font-size: 42px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
 }
 
 .hero::before {
@@ -104,27 +114,44 @@ footer {
 
 .container {
   margin: 10px;
-  background-color: white;
+  background-color: #fff;
   border-radius: 5px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategray;
+          box-shadow: 3px 5px 2px 1px lightslategray;
 }
 
 .button__standard {
   margin: 10px;
-  padding: 10px 15px;
+  padding: 7px 12px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
+  -webkit-box-shadow: 3px 3px 1px 1px lightslategray;
+          box-shadow: 3px 3px 1px 1px lightslategray;
   background-color: #a18fae;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   color: black;
 }
 
 .button__standard:hover {
   background-color: #ebe6c9;
   color: black;
+  cursor: pointer;
+}
+
+.button--inactive {
+  margin: 10px;
+  padding: 7px 12px;
+  font-size: 16px;
+  border: solid 1px grey;
+  border-radius: 8px;
+  -webkit-box-shadow: 3px 3px 1px 1px lightslategray;
+          box-shadow: 3px 3px 1px 1px lightslategray;
+  background-color: #e6e6e6;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  color: grey;
 }
 
 .adminpage {
@@ -133,6 +160,7 @@ footer {
 
 .adminpage__text {
   margin: 10px;
+  font-weight: bold;
 }
 
 .adminpage__wordlist {
@@ -158,22 +186,33 @@ footer {
   cursor: pointer;
 }
 
+.validationText {
+  margin-left: 10px;
+  color: red;
+}
+
 .editpage {
   padding: 10px;
 }
 
+.edit-text {
+  display: block;
+}
+
+@media (min-width: 540px) {
+  .edit-text {
+    display: inline-block;
+  }
+}
+
 .text-input {
   margin: 10px;
-  padding: 5px 10px;
+  padding: 7px 12px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  -webkit-box-shadow: 3px 5px 2px 1px lightslategrey;
-          box-shadow: 3px 5px 2px 1px lightslategrey;
-}
-
-.input-label {
-  margin: 10px;
+  -webkit-box-shadow: 3px 5px 2px 1px lightslategray;
+          box-shadow: 3px 5px 2px 1px lightslategray;
 }
 
 .hide {
@@ -187,9 +226,17 @@ footer {
 .gamepage__container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (1fr)[2];
-  -ms-grid-columns: 60% 40%;
-      grid-template: repeat(2, 1fr)/60% 40%;
+  -ms-grid-rows: 2fr 1fr 2fr;
+  -ms-grid-columns: 1fr;
+      grid-template: 2fr 1fr 2fr / 1fr;
+}
+
+@media (min-width: 600px) {
+  .gamepage__container {
+    -ms-grid-rows: (1fr)[2];
+    -ms-grid-columns: 60% 40%;
+        grid-template: repeat(2, 1fr)/60% 40%;
+  }
 }
 
 .gamepage__word {
@@ -221,7 +268,18 @@ footer {
 }
 
 .gamepage__graphics {
-  grid-row: span 2;
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+}
+
+@media (min-width: 600px) {
+  .gamepage__graphics {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+    grid-row: span 2;
+  }
 }
 
 .gamepage__alphabet {
@@ -284,5 +342,11 @@ footer {
   -o-object-fit: contain;
      object-fit: contain;
   padding: 15px;
+}
+
+.helplist {
+  line-height: 1.4em;
+  padding: 15px;
+  margin-left: 10px;
 }
 /*# sourceMappingURL=main.css.map */
